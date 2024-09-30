@@ -1,0 +1,2 @@
+wget https://huggingface.co/hungdang1610/estimate_age/resolve/main/models/best_model_weights_10.pth?download=true
+wget https://huggingface.co/hungdang1610/estimate_age/resolve/main/models/yolov8x_person_face.pt?download=true

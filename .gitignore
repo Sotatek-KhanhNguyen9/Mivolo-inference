@@ -1,5 +1,6 @@
 __pycache__/
 demos/
-weights/
+best_model_weights_10.pth
+yolov8x_person_face.pt
 image_database/
 output.mp4

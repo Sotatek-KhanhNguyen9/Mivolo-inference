@@ -10,6 +10,13 @@ from IPython.display import HTML
 from Mivolo_Sys import RecommendationSystem
 from utils import compare_face_distances, calculate_face_angle
 import subprocess
+import argparse
+
+args = argparse.ArgumentParser()
+args.add_argument("--model_path", type=str, default="weights/best_model_weights_10.pth")
+args.add_argument("--detection_path", type=str, default="weights/yolov8x_person_face.pt")
+args.add_argument("--save_path", type=str, default="image_database/captured_face.jpg")
+args = args.parse_args()
 
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
@@ -201,8 +208,8 @@ class FaceMeshRecommendationSystem:
 
 # Configuration and execution
 config = {
-    "model_path": "weights/best_model_weights_10.pth",
-    "detection_path": "weights/yolov8x_person_face.pt",
+    "model_path": f"{args.model_path}",
+    "detection_path": f"{args.detection_path}",
     "sim_threshold": {
         "euclidean": 0.45,
         "cosine": 0.08,
@@ -211,12 +218,13 @@ config = {
         "chebyshev": 0.01,
         "hamming": 0.5
     },
-    "save_path": "image_database/captured_face.jpg",
+    "save_path": f"{args.save_path}",
     "process_every_n_frames": 1,
     "delay": 4,
     "threshold": 70,
     "device": "cuda" if torch.cuda.is_available() else "cpu",
-    "distance": ["euclidean", "cosine", "manhattan"]
+    "distance": ["euclidean", "cosine", "manhattan"],
+    "straight_threshold": 0.35
 }
 
 system = FaceMeshRecommendationSystem(**config)
