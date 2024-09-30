@@ -1,0 +1,5 @@
+__pycache__/
+demos/
+weights/
+image_database/
+output.mp4
